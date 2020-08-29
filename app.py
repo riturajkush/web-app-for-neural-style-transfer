@@ -57,10 +57,13 @@ def main(style, content):
 
         img = deprocess(img)
 
-        plt.grid(False)
-        plt.xticks([])
-        plt.yticks([])
+        #plt.grid(False)
+        #plt.xticks([])
+        #plt.yticks([])
+        plt.figure()
         plt.imshow(img, interpolation='nearest')
+        #img = Image.open(io.StringIO(img))
+        #st.image(img)
         st.pyplot()
 
     model = VGG19(include_top = False, weights = 'imagenet')
@@ -183,16 +186,16 @@ if __name__ == '__main__':
     #st.set_option('deprecation.showfileUploaderEncoding', False)
     if(img_file_buffer1 is not None):
         content = Image.open(img_file_buffer1)
-        content = content.resize((224,224))
         st.image(content, width=None)
+        content = content.resize((150,150))
         con = 1
 
     img_file_buffer2 = st.file_uploader("Upload a style image", type=["png", "jpg", "jpeg"], key="style")
     #st.set_option('deprecation.showfileUploaderEncoding', False)
     if(img_file_buffer2 is not None):
         style = Image.open(img_file_buffer2)
-        style = style.resize((224,224))
         st.image(style, width=None)
+        style = style.resize((150,150))
         sty = 1
         #k += 1
 
